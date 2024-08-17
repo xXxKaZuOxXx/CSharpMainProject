@@ -20,16 +20,16 @@ namespace UnitBrains.Player
             // Homework 1.3 (1st block, 3rd module)
             if(GetTemperature() < overheatTemperature)
             {
-                IncreaseTemperature();
                 Debug.Log(_temperature);
 
-                for (int i = 0; i < _temperature; i++)
+                for (int i = 0; i < _temperature+1; i++ )
                 {
                     var projectile = CreateProjectile(forTarget);
                     AddProjectileToList(projectile, intoList);
                 }
-            }
-           
+
+                IncreaseTemperature();
+            }   
         }
 
         public override Vector2Int GetNextStep()
@@ -42,13 +42,36 @@ namespace UnitBrains.Player
             ///////////////////////////////////////
             // Homework 1.4 (1st block, 4rd module)
             ///////////////////////////////////////
+            
             List<Vector2Int> result = GetReachableTargets();
+            float minimum = float.MaxValue;
+            Vector2Int pos = Vector2Int.zero;
+            foreach (var target in result)
+            {
+                if(DistanceToOwnBase(target) < minimum)
+                {   
+                    minimum = DistanceToOwnBase(target);
+                    pos = target;
+                }
+            }
+
+            if(GetReachableTargets().Count > 0)
+            {
+                result.Clear();
+                result.Add(pos);
+            }
+            
             while (result.Count > 1)
             {
                 result.RemoveAt(result.Count - 1);
             }
             return result;
             ///////////////////////////////////////
+        }
+
+        private static Vector2Int GetTarget(Vector2Int target)
+        {
+            return target;
         }
 
         public override void Update(float deltaTime, float time)

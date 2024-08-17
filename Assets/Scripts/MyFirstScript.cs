@@ -4,38 +4,28 @@ using UnityEngine;
 
 public class MyFirstScript : MonoBehaviour
 {
+    int A = 2;
     // Start is called before the first frame update
     void Start()
     {
-        int N = 5;
-        Debug.Log(SUM(N));
-        Debug.Log(PROIZVED(N));
+        Debug.Log(A);
+        Prinimachka(ref A);
+        Debug.Log(A);
 
-            
+
     }
-
-    int SUM( int N)
+    void Prinimachka(ref int l)
     {
-        int summa = 0;
-        for (int i = 1; i <= N; i++)
-        {
-            summa += i;
-        }
-        return summa;
-    }
-
-    int PROIZVED(int N)
-    {
-        int summa = 1;
-        for(int i = 1;i <= N;i++)
-        {
-            summa *= i;
-        }
-        return summa;
-
+        l++;
     }
 
     
 
-  
+
+
+
+
+
+
+
 }
