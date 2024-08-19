@@ -55,7 +55,7 @@ namespace UnitBrains.Player
                 }
             }
 
-            if(GetReachableTargets().Count > 0)
+            if(result.Count > 0)
             {
                 result.Clear();
                 result.Add(pos);
@@ -69,10 +69,7 @@ namespace UnitBrains.Player
             ///////////////////////////////////////
         }
 
-        private static Vector2Int GetTarget(Vector2Int target)
-        {
-            return target;
-        }
+     
 
         public override void Update(float deltaTime, float time)
         {
