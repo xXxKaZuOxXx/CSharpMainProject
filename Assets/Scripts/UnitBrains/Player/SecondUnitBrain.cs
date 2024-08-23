@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Model.Runtime.Projectiles;
 using UnityEngine;
+using Utilities;
 
 namespace UnitBrains.Player
 {
@@ -12,7 +13,7 @@ namespace UnitBrains.Player
         private float _temperature = 0f;
         private float _cooldownTime = 0f;
         private bool _overheated;
-        
+        private List<Vector2Int> FarTargets = new List<Vector2Int>();
         protected override void GenerateProjectiles(Vector2Int forTarget, List<BaseProjectile> intoList)
         {
             float overheatTemperature = OverheatTemperature;
@@ -34,7 +35,28 @@ namespace UnitBrains.Player
 
         public override Vector2Int GetNextStep()
         {
-            return base.GetNextStep();
+            
+            Vector2Int position = unit.Pos;
+            Vector2Int nextposition = unit.Pos;
+            foreach ( var targets in FarTargets )
+            {
+                if(IsTargetInRange(targets))
+                {
+                    FarTargets.Clear();
+                    
+                    return position;
+                }
+                else
+                {
+                    
+                    nextposition = targets;
+                    
+                }
+
+            }
+            
+            return position.CalcNextStepTowards(nextposition);
+
         }
 
         protected override List<Vector2Int> SelectTargets()
@@ -42,25 +64,68 @@ namespace UnitBrains.Player
             ///////////////////////////////////////
             // Homework 1.4 (1st block, 4rd module)
             ///////////////////////////////////////
-            
-            List<Vector2Int> result = GetReachableTargets();
+            List<Vector2Int> result = new List<Vector2Int>();
+
             float minimum = float.MaxValue;
             Vector2Int pos = Vector2Int.zero;
-            foreach (var target in result)
+
+            IEnumerable< Vector2Int > allTargets = GetAllTargets();
+            if(allTargets != null)
             {
-                if(DistanceToOwnBase(target) < minimum)
+                foreach(Vector2Int target in allTargets)
+                {
+                    if (DistanceToOwnBase(target) < minimum)
                 {   
                     minimum = DistanceToOwnBase(target);
                     pos = target;
                 }
-            }
 
-            if(result.Count > 0)
+                }
+                if(IsTargetInRange(pos))
+                {
+                    result.Add(pos);
+                   
+                }
+                else
+                {
+                    FarTargets.Add(pos);
+                    
+                }
+            }
+            else
             {
-                result.Clear();
-                result.Add(pos);
+                if (IsTargetInRange(runtimeModel.RoMap.Bases[0]))
+                {
+                    result.Add(runtimeModel.RoMap.Bases[0]);
+                    
+                }
+                else
+                {
+                    FarTargets.Add(runtimeModel.RoMap.Bases[0]);
+                    
+                }
             }
             
+            
+            
+            //List<Vector2Int> result = GetReachableTargets();
+            //float minimum = float.MaxValue;
+            //Vector2Int pos = Vector2Int.zero;
+            //foreach (var target in result)
+            //{
+            //    if(DistanceToOwnBase(target) < minimum)
+            //    {   
+            //        minimum = DistanceToOwnBase(target);
+            //        pos = target;
+            //    }
+            //}
+
+            //if(result.Count > 0)
+            //{
+            //    result.Clear();
+            //    result.Add(pos);
+            //}
+
             while (result.Count > 1)
             {
                 result.RemoveAt(result.Count - 1);
