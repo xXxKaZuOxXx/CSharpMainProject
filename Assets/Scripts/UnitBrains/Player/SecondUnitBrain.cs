@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Model;
 using Model.Runtime.Projectiles;
 using UnityEngine;
 using Utilities;
@@ -37,14 +38,20 @@ namespace UnitBrains.Player
         {
             Vector2Int pos = unit.Pos;
             Vector2Int nextpos = new Vector2Int();
-           
-            if (FarTargets == null) 
+            Vector2Int target;
+
+
+            if (FarTargets.Count > 0) 
+            {
+                target = FarTargets[0];
+                
+                
+            }
+            else
             {
                 return unit.Pos;
-                Debug.Log(":((((");
             }
-            foreach(var target in FarTargets)
-            {
+ 
                 if(IsTargetInRange(target))
                 {
                     return unit.Pos;
@@ -52,10 +59,10 @@ namespace UnitBrains.Player
                 else
                 {
                     nextpos = target;
-                }
+                return pos.CalcNextStepTowards(nextpos);
+
             }
-            return pos.CalcNextStepTowards(nextpos);
-            
+
         }
 
         protected override List<Vector2Int> SelectTargets()
@@ -67,11 +74,13 @@ namespace UnitBrains.Player
 
             float minimum = float.MaxValue;
             Vector2Int pos = Vector2Int.zero;
+            int ID;
+           
 
             IEnumerable< Vector2Int > allTargets = GetAllTargets();
             if(allTargets != null)
             {
-                foreach(Vector2Int target in allTargets)
+                foreach(Vector2Int target in GetAllTargets())
                 {
                     if (DistanceToOwnBase(target) < minimum)
                     {   
@@ -80,44 +89,34 @@ namespace UnitBrains.Player
                     }
 
                 }
+                FarTargets.Clear();
+                FarTargets.Add(pos);
+                if (IsTargetInRange(pos))
+                {
+                    result.Add(pos);
+                }
 
-                if(IsTargetInRange(pos))
+                
+                 
+            }
+            if (minimum < float.MaxValue)
+            {
+                if (IsTargetInRange(pos))
                 {
                     result.Add(pos);
                 }
                 else
                 {
-                    FarTargets.Add(pos);
-                }  
-            }
-            else
-            {
-                if (IsTargetInRange(runtimeModel.RoMap.Bases[0]))
-                {
-                    result.Add(runtimeModel.RoMap.Bases[0]);
-                }
-                else
-                {
-                    FarTargets.Add(runtimeModel.RoMap.Bases[0]);
+                    int palyerID = IsPlayerUnitBrain ? RuntimeModel.PlayerId : RuntimeModel.BotPlayerId;
+                    Vector2Int enemyBase = runtimeModel.RoMap.Bases[palyerID];
+                    FarTargets.Add(enemyBase);
                 }
             }
-
-            //List<Vector2Int> result = GetReachableTargets();
-            //float minimum = float.MaxValue;
-            //Vector2Int pos = Vector2Int.zero;
-            //foreach (var target in result)
-            //{
-            //    if(DistanceToOwnBase(target) < minimum)
-            //    {   
-            //        minimum = DistanceToOwnBase(target);
-            //        pos = target;
-            //    }
-            //}
-
+           
             if (result.Count > 0)
             {
                 result.Clear();
-                result.Add(pos);
+               result.Add(pos);
             }
 
             while (result.Count > 1)
