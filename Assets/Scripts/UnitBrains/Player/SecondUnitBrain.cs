@@ -14,10 +14,14 @@ namespace UnitBrains.Player
         private float _temperature = 0f;
         private float _cooldownTime = 0f;
         private bool _overheated;
-        private List<Vector2Int> FarTargets = new List<Vector2Int>();
+       
         private static int Counter = 0;
         public int UnitNumber = Counter;
         private const  int MaxTargets = 3;
+        private List<Vector2Int> FarTargets = new List<Vector2Int>();
+        
+
+        
         protected override void GenerateProjectiles(Vector2Int forTarget, List<BaseProjectile> intoList)
         {
             float overheatTemperature = OverheatTemperature;
@@ -39,6 +43,9 @@ namespace UnitBrains.Player
 
         public override Vector2Int GetNextStep()
         {
+
+
+
             Vector2Int pos = unit.Pos;
             Vector2Int nextpos = new Vector2Int();
             Vector2Int target;
@@ -66,6 +73,7 @@ namespace UnitBrains.Player
 
         protected override List<Vector2Int> SelectTargets()
         {
+
             ///////////////////////////////////////
             // Homework 1.4 (1st block, 4rd module)
             ///////////////////////////////////////
@@ -76,7 +84,7 @@ namespace UnitBrains.Player
 
             FarTargets.Clear();
 
-            foreach(var target in GetAllTargets())
+            foreach (var target in GetAllTargets())
             {
                 FarTargets.Add(target);
             }
@@ -98,18 +106,21 @@ namespace UnitBrains.Player
 
             int EnID = UnitNumber % MaxTargets;
             int i = 0;
-            if(EnID == i%MaxTargets)
+            if (EnID == i % MaxTargets)
             {
                 pos = FarTargets[i];
             }
-            if(IsTargetInRange(pos))
+            if (IsTargetInRange(pos))
             {
                 result.Add(pos);
             }
             i++;
-            
+
 
             Counter++;
+
+
+
 
             //IEnumerable< Vector2Int > allTargets = GetAllTargets();
             //if(allTargets != null)
@@ -162,7 +173,7 @@ namespace UnitBrains.Player
             ///////////////////////////////////////
         }
 
-     
+
 
         public override void Update(float deltaTime, float time)
         {
