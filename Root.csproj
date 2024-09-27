@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Model\Config\UnitConfig.cs" />
     <Compile Include="Assets\Scripts\Utilities\PersistanceUtils.cs" />
     <Compile Include="Assets\Scripts\View\RootView.cs" />
+    <Compile Include="Assets\Scripts\Nodee.cs" />
     <Compile Include="Assets\Scripts\UnitBrains\Pathfinding\BaseUnitPath.cs" />
     <Compile Include="Assets\Scripts\UnitBrains\Player\SecondUnitBrain.cs" />
     <Compile Include="Assets\Scripts\MyFirstScript.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Scripts\UnitBrains\Enemy\DefaultEnemyUnitBrain.cs" />
     <Compile Include="Assets\Scripts\View\ProjectileView.cs" />
     <Compile Include="Assets\Scripts\View\StartMenuView.cs" />
+    <Compile Include="Assets\Scripts\A_zvezdochka.cs" />
     <Compile Include="Assets\Scripts\Model\RuntimeModel.cs" />
     <Compile Include="Assets\Scripts\View\HealthBar.cs" />
     <Compile Include="Assets\Scripts\View\VFXView.cs" />
