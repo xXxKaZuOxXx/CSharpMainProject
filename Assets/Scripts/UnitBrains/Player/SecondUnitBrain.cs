@@ -46,28 +46,29 @@ namespace UnitBrains.Player
 
 
 
-            Vector2Int pos = unit.Pos;
-            Vector2Int nextpos = new Vector2Int();
-            Vector2Int target;
+            //Vector2Int pos = unit.Pos;
+            //Vector2Int nextpos = new Vector2Int();
+            //Vector2Int target;
 
-            if (FarTargets.Count > 0)
-            {
-                target = FarTargets[0];
-            }
-            else
-            {
-                return unit.Pos;
-            }
+            //if (FarTargets.Count > 0)
+            //{
+            //    target = FarTargets[0];
+            //}
+            //else
+            //{
+            //    return unit.Pos;
+            //}
 
-            if (IsTargetInRange(target))
-            {
-                return unit.Pos;
-            }
-            else
-            {
-                nextpos = target;
-                return pos.CalcNextStepTowards(nextpos);
-            }
+            //if (IsTargetInRange(target))
+            //{
+            //    return unit.Pos;
+            //}
+            //else
+            //{
+            //    nextpos = target;
+            //    return pos.CalcNextStepTowards(nextpos);
+            //}
+            return base.GetNextStep();
 
         }
 

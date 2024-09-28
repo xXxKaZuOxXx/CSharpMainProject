@@ -1,9 +1,10 @@
+using Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nodee : MonoBehaviour
+public class Nodee
 {
     public Vector2Int Point;
     public int Cost = 10;
@@ -14,7 +15,15 @@ public class Nodee : MonoBehaviour
     {
        Point = point;
     }
-
+    public Vector2Int GetPoint { get { return Point; } }
+    public Vector2Int GetSetPoint
+    {
+        set
+        {
+            Point = value;
+        }
+        get { return Point; }
+    }
     public void CalculateEstimate(Vector2Int targetPoint)
     {
         Estimate = Math.Abs(Point.x - targetPoint.x) + Math.Abs(Point.y-targetPoint.y);
@@ -25,12 +34,12 @@ public class Nodee : MonoBehaviour
         Value = Cost + Estimate;
     }
 
-    //public override bool Equals(object? obj)
-    //{
-    //    if (obj is not Nodee node) return false;
+    public override bool Equals(object? obj)
+    {
+        if (obj is not Nodee node) return false;
 
-    //    return Point.x == node.Point.x && Point.x == node.Point.x;
-    //}
+        return Point.x == node.Point.x && Point.y == node.Point.y;
+    }
 
 }
 

@@ -16,7 +16,7 @@ namespace UnitBrains.Pathfinding
 
         public void HighlightPath(BaseUnitPath path)
         {
-            Debug.Log("ccc");
+           
             Path = path;
             while (allHighlights.Count > 0)
             {
@@ -33,15 +33,29 @@ namespace UnitBrains.Pathfinding
 
         private IEnumerator HighlightCoroutine(BaseUnitPath path)
         {
+            var counter = 0;
             foreach (var yaustal in path.GetPath())
             {
-                CreateHighlight(yaustal);
-
+               if(counter < maxHighlights)
+                {
+                    CreateHighlight(yaustal);
+                }
+               counter++;
+              
             }
+           
 
-            Debug.Log("ZZZ");
+
             
-            yield return  new WaitForSeconds(1);
+         
+          
+            
+            yield return  new WaitForSeconds(3);
+            if(counter == maxHighlights)
+            {
+                DestroyHighlight(0);
+            }
+            
         }
 
         private void CreateHighlight(Vector2Int atCell)
