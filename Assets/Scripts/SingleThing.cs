@@ -15,16 +15,16 @@ public class SingleThing
     private IReadOnlyUnit un { get; set; }
     private Vector2Int pos { get; set; }
 
-    private SingleThing()
+    public  SingleThing()
     {
         _model = ServiceLocator.Get<IReadOnlyRuntimeModel>();
         _timeUtil = ServiceLocator.Get<TimeUtil>();
         _timeUtil.AddFixedUpdateAction(Subscribe);
-
-
     }
+
     public Vector2Int target;
     public Vector2Int position;
+
     public static SingleThing Instance()
     {
         if (_instanse == null)
@@ -37,7 +37,6 @@ public class SingleThing
         pos = ReccomendPoint();
         
     }
-    
     
     public IReadOnlyUnit ReccomedTarget()
     {
@@ -69,16 +68,12 @@ public class SingleThing
             {
                 enemies.Sort(CompareByDistanceToOwnBase);
                 return enemies[0].Pos;
-
             }
         }
         else
         {
             return _model.RoMap.Bases[RuntimeModel.BotPlayerId];
-        }
-       
-        
-
+        }       
     }
     private bool IsOurPartOfMap(List<IReadOnlyUnit> enimies)
     {
@@ -103,8 +98,7 @@ public class SingleThing
                 return false;
             }
         }
-        return false;
-        
+        return false;        
     }
     float DistOwnBase(IReadOnlyUnit a)
     {

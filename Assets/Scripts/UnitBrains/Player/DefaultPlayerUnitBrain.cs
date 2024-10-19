@@ -28,8 +28,8 @@ namespace UnitBrains.Player
             A_zvezdochka path;
             if (HasTargetsInRange())
                 return unit.Pos;
-            var recTarg = SingleThing.Instance().ReccomedTarget();
-            var recPoint = SingleThing.Instance().ReccomendPoint();
+            var recTarg =thing.ReccomedTarget();
+            var recPoint = thing.ReccomendPoint();
             if (recTarg != null && HasDoubleTargetsInRange(recTarg))
             {
                 path = new A_zvezdochka(runtimeModel, unit.Pos, recTarg.Pos);
