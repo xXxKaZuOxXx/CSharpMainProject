@@ -1,4 +1,5 @@
 using Model;
+using Model.Runtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +13,15 @@ public class A_zvezdochka : BaseUnitPath
     
     private Vector2Int _startPoint;
     private Vector2Int _endPoint;
-   
+
+
     public A_zvezdochka(IReadOnlyRuntimeModel runtimeModel, Vector2Int startPoint, Vector2Int endPoint) : base(runtimeModel, startPoint, endPoint)
     {
         _startPoint = startPoint;
         _endPoint = endPoint;
 
     }
-
+   
 
     protected override void Calculate()
     {
@@ -43,7 +45,7 @@ public class A_zvezdochka : BaseUnitPath
     {
         Nodee startNode = new Nodee(_startPoint);
         Nodee targetNode = new Nodee(_endPoint);
-       
+       List<Nodee> PlanB = new List<Nodee> { startNode };
 
         List<Nodee> openList = new List<Nodee> { startNode };
         List<Nodee> closedList = new List<Nodee>();
@@ -105,7 +107,7 @@ public class A_zvezdochka : BaseUnitPath
             
         }
         
-        return null;
+        return PlanB;
     }
     private Vector2Int ThisWay(Vector2Int end, Vector2Int cur)
     {

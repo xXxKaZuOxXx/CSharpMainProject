@@ -44,30 +44,6 @@ namespace UnitBrains.Player
         public override Vector2Int GetNextStep()
         {
 
-
-
-            //Vector2Int pos = unit.Pos;
-            //Vector2Int nextpos = new Vector2Int();
-            //Vector2Int target;
-
-            //if (FarTargets.Count > 0)
-            //{
-            //    target = FarTargets[0];
-            //}
-            //else
-            //{
-            //    return unit.Pos;
-            //}
-
-            //if (IsTargetInRange(target))
-            //{
-            //    return unit.Pos;
-            //}
-            //else
-            //{
-            //    nextpos = target;
-            //    return pos.CalcNextStepTowards(nextpos);
-            //}
             return base.GetNextStep();
 
         }
@@ -78,98 +54,11 @@ namespace UnitBrains.Player
             ///////////////////////////////////////
             // Homework 1.4 (1st block, 4rd module)
             ///////////////////////////////////////
-            List<Vector2Int> result = new List<Vector2Int>();
-
-            float minimum = float.MaxValue;
-            Vector2Int pos = Vector2Int.zero;
-
-            FarTargets.Clear();
-
-            foreach (var target in GetAllTargets())
+            List<Vector2Int> result = GetReachableTargets();
+            while (result.Count > 1)
             {
-                FarTargets.Add(target);
+                result.RemoveAt(result.Count - 1);
             }
-
-            if (minimum < float.MaxValue)
-            {
-                if (IsTargetInRange(pos))
-                {
-                    //result.Add(pos);
-                }
-                else
-                {
-                    int palyerID = IsPlayerUnitBrain ? RuntimeModel.PlayerId : RuntimeModel.BotPlayerId;
-                    Vector2Int enemyBase = runtimeModel.RoMap.Bases[palyerID];
-                    FarTargets.Add(enemyBase);
-                }
-            }
-            SortByDistanceToOwnBase(FarTargets);
-
-            int EnID = UnitNumber % MaxTargets;
-            int i = 0;
-            if (EnID == i % MaxTargets)
-            {
-                pos = FarTargets[i];
-            }
-            if (IsTargetInRange(pos))
-            {
-                result.Add(pos);
-            }
-            i++;
-
-
-            Counter++;
-
-
-
-
-            //IEnumerable< Vector2Int > allTargets = GetAllTargets();
-            //if(allTargets != null)
-            //{
-            //    foreach(Vector2Int target in GetAllTargets())
-            //    {
-            //        if (DistanceToOwnBase(target) < minimum)
-            //        {   
-            //            minimum = DistanceToOwnBase(target);
-            //            pos = target;
-            //        }
-
-            //    }
-            //    FarTargets.Clear();
-            //    FarTargets.Add(pos);
-            //    if (IsTargetInRange(pos))
-            //    {
-            //        result.Add(pos);
-            //    }
-
-
-
-            //}
-            //if (minimum < float.MaxValue)
-            //{
-            //    if (IsTargetInRange(pos))
-            //    {
-            //        result.Add(pos);
-            //    }
-            //    else
-            //    {
-            //        int palyerID = IsPlayerUnitBrain ? RuntimeModel.PlayerId : RuntimeModel.BotPlayerId;
-            //        Vector2Int enemyBase = runtimeModel.RoMap.Bases[palyerID];
-            //        FarTargets.Add(enemyBase);
-            //    }
-            //}
-
-
-            //if (result.Count > 0)
-            //{
-            //    result.Clear();
-            //   result.Add(pos);
-            //}
-
-            //while (result.Count > 1)
-            //{
-            //    result.RemoveAt(result.Count - 1);
-            //}
             return result;
             ///////////////////////////////////////
         }
