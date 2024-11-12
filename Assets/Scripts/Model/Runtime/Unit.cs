@@ -27,6 +27,7 @@ namespace Model.Runtime
         private float _nextMoveTime = 0f;
         private float _nextAttackTime = 0f;
         
+        private SystemForBuffs _buffs = ServiceLocator.Get<SystemForBuffs>();
         public Unit(UnitConfig config, Vector2Int startPos, SingleThing thing)
         {
             Config = config;
@@ -57,7 +58,8 @@ namespace Model.Runtime
             
             if (_nextAttackTime < time && Attack())
             {
-                _nextAttackTime = time + Config.AttackDelay;
+                float bufmaybe = _buffs.Push(this, new BufAt(10, 0.5f));
+                _nextAttackTime = time + (Config.AttackDelay - bufmaybe);
             }
         }
 

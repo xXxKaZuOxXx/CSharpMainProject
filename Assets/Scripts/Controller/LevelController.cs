@@ -19,6 +19,7 @@ namespace Controller
         private readonly Settings _settings;
         private readonly TimeUtil _timeUtil;
         private SingleThing thing;
+     
         public LevelController(RuntimeModel runtimeModel, RootController rootController)
         {
             _runtimeModel = runtimeModel;

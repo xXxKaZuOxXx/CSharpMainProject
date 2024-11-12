@@ -61,8 +61,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\View\TileView.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\Projectiles\BaseProjectile.cs" />
+    <Compile Include="Assets\Scripts\Bufff\DeBufSp.cs" />
     <Compile Include="Assets\Scripts\View\UnitView.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\ReadOnly\IReadOnlyUnit.cs" />
+    <Compile Include="Assets\Scripts\Bufff\BufAt.cs" />
     <Compile Include="Assets\Scripts\UnitBrains\BaseUnitBrain.cs" />
     <Compile Include="Assets\Scripts\Utilities\CameraPositioning.cs" />
     <Compile Include="Assets\Scripts\View\ChooseUnitView.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Assets\Scripts\View\LevelFinishedView.cs" />
     <Compile Include="Assets\Scripts\View\Gameplay3dView.cs" />
     <Compile Include="Assets\Scripts\EnterPoint.cs" />
+    <Compile Include="Assets\Scripts\Bufff\BufSpeed.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\MainBase.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\ReadOnly\IReadOnlyMap.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\Projectiles\ProjectileType.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Assets\Scripts\Model\Config\Settings.cs" />
     <Compile Include="Assets\Scripts\Model\Config\UnitConfig.cs" />
     <Compile Include="Assets\Scripts\Utilities\PersistanceUtils.cs" />
+    <Compile Include="Assets\Scripts\Bufff\SystemForBuffs.cs" />
     <Compile Include="Assets\Scripts\View\RootView.cs" />
     <Compile Include="Assets\Scripts\Nodee.cs" />
     <Compile Include="Assets\Scripts\UnitBrains\Pathfinding\BaseUnitPath.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="Assets\Scripts\View\VFXView.cs" />
     <Compile Include="Assets\Scripts\Controller\IPlayerUnitChoosingListener.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions.cs" />
+    <Compile Include="Assets\Scripts\Bufff\DeBufAt.cs" />
     <Compile Include="Assets\Scripts\Utilities\ServiceLocator.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\Projectiles\ArchToTileProjectile.cs" />
     <Compile Include="Assets\Scripts\UnitBrains\Pathfinding\DummyUnitPath.cs" />
@@ -110,6 +115,7 @@
     <Compile Include="Assets\Scripts\Model\Runtime\Projectiles\HorizontalLineProjectile.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\Projectiles\HomingProjectile.cs" />
     <Compile Include="Assets\Scripts\Utilities\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Bufff\BuDebu.cs" />
     <Compile Include="Assets\Scripts\Controller\BotController.cs" />
     <Compile Include="Assets\Scripts\Controller\SimulationController.cs" />
   </ItemGroup>
