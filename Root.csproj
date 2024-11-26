@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\UnitBrains\Pathfinding\BaseUnitPath.cs" />
     <Compile Include="Assets\Scripts\UnitBrains\Player\SecondUnitBrain.cs" />
     <Compile Include="Assets\Scripts\MyFirstScript.cs" />
+    <Compile Include="Assets\Scripts\UnitBrains\Player\Sky Buffer.cs" />
     <Compile Include="Assets\Scripts\Model\PersistedModel.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\ReadOnly\IReadOnlyBase.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimeUtil.cs" />

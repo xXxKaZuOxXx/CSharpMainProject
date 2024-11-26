@@ -52,13 +52,14 @@ namespace Model.Runtime
             
             if (_nextMoveTime < time)
             {
-                _nextMoveTime = time + Config.MoveDelay;
+                float byfmaybe = _buffs.IfTrueUnit(this);
+                _nextMoveTime = time + Config.MoveDelay - byfmaybe;
                 Move();
             }
             
             if (_nextAttackTime < time && Attack())
             {
-                float bufmaybe = _buffs.Push(this, new BufAt(10, 0.5f));
+                float bufmaybe = _buffs.Push(this, new BufAt(0.5f, 0.1f));
                 _nextAttackTime = time + (Config.AttackDelay - bufmaybe);
             }
         }

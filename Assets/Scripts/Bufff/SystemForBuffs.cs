@@ -1,17 +1,19 @@
 using Model;
 using Model.Config;
 using Model.Runtime;
+using Model.Runtime.ReadOnly;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnitBrains;
 using UnityEngine;
 using Utilities;
-using static UnityEditor.PlayerSettings;
+
 
 public class SystemForBuffs
 {
-   Dictionary<Unit,BuDebu> buf = new Dictionary<Unit, BuDebu> ();
+  
+   Dictionary<Unit, BuDebu> buf = new Dictionary<Unit, BuDebu> ();
    
     public float Push(Unit unit, BuDebu buDebu)
     {
@@ -22,6 +24,7 @@ public class SystemForBuffs
         else
         {
             buf.Add(unit, buDebu);
+            
             float ZNACH = buDebu.Value;
             Pop(unit, buDebu);
             return ZNACH;
@@ -33,6 +36,14 @@ public class SystemForBuffs
         yield return new WaitForSeconds(buDebu.Duration);
         buf.Remove(unit);
 
+    }
+    public float IfTrueUnit(Unit unit)
+    {
+        if(buf.ContainsKey(unit))
+        {
+            return buf[unit].Value;
+        }
+        else {return 0f; }
     }
     
 
