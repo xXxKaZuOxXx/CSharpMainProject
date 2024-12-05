@@ -12,12 +12,17 @@ namespace Model.Runtime
 {
     public class Unit : IReadOnlyUnit
     {
-        public UnitConfig Config { get; }
+        public UnitConfig Config { get; private set; }
         public Vector2Int Pos { get; private set; }
         public int Health { get; private set; }
         public bool IsDead => Health <= 0;
         public BaseUnitPath ActivePath => _brain?.ActivePath;
         public IReadOnlyList<BaseProjectile> PendingProjectiles => _pendingProjectiles;
+
+        public float MoveCoef = 0;
+        public float AtcCoef = 0;
+        public float AtcRange = 0;
+        public float sing_or_duble_bullet = 1;
 
         private readonly List<BaseProjectile> _pendingProjectiles = new();
         private IReadOnlyRuntimeModel _runtimeModel;
@@ -43,29 +48,32 @@ namespace Model.Runtime
         {
             if (IsDead)
                 return;
-            
+            //sing_or_duble_bullet = _buffs.Push(this, new DoubleAttack<Unit>(2f, 2f));
+            _buffs.Push(this, new DoubleAttack<Unit>(3,3));
             if (_nextBrainUpdateTime < time)
             {
                 _nextBrainUpdateTime = time + Config.BrainUpdateInterval;
                 _brain.Update(deltaTime, time);
             }
-            
+            _buffs.Push(this, new MoreRange<Unit>(3f, 5f));
+
             if (_nextMoveTime < time)
             {
-                float byfmaybe = _buffs.IfTrueUnit(this);
-                _nextMoveTime = time + Config.MoveDelay - byfmaybe;
+                MoveCoef = _buffs.IfTrueUnit(this, "SpdBuff");
+                _nextMoveTime = time + Config.MoveDelay - MoveCoef;
                 Move();
             }
             
             if (_nextAttackTime < time && Attack())
             {
-                float bufmaybe = _buffs.Push(this, new BufAt(0.5f, 0.1f));
-                _nextAttackTime = time + (Config.AttackDelay - bufmaybe);
+                AtcCoef = _buffs.Push(this, new BufAt<Unit>(4f, 0.65f));
+                _nextAttackTime = time + (Config.AttackDelay - AtcCoef);
             }
         }
 
         private bool Attack()
         {
+            
             var projectiles = _brain.GetProjectiles();
             if (projectiles == null || projectiles.Count == 0)
                 return false;

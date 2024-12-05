@@ -72,7 +72,7 @@ public class SkyBuffer : DefaultPlayerUnitBrain
         {
             listfr.RemoveAt(listfr.Count - 1);
         }
-        float bufmaybe = _buffs.Push((Unit)listfr[0], new BufSpeed(0.5f, 0.2f));
+        float bufmaybe = _buffs.Push((Unit)listfr[0], new BufSpeed<Unit>(0.5f, 0.2f));
         
         vfxView.PlayVFX(listfr[0].Pos, VFXView.VFXType.BuffApplied);
      

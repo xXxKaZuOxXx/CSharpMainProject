@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\View\TileView.cs" />
+    <Compile Include="Assets\Scripts\Bufff\MoreRange.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\Projectiles\BaseProjectile.cs" />
     <Compile Include="Assets\Scripts\Bufff\DeBufSp.cs" />
     <Compile Include="Assets\Scripts\View\UnitView.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\View\LevelFinishedView.cs" />
     <Compile Include="Assets\Scripts\View\Gameplay3dView.cs" />
     <Compile Include="Assets\Scripts\EnterPoint.cs" />
+    <Compile Include="Assets\Scripts\Bufff\SingleCoroutines.cs" />
     <Compile Include="Assets\Scripts\Bufff\BufSpeed.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\MainBase.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\ReadOnly\IReadOnlyMap.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Assets\Scripts\Model\PersistedModel.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\ReadOnly\IReadOnlyBase.cs" />
     <Compile Include="Assets\Scripts\Utilities\TimeUtil.cs" />
+    <Compile Include="Assets\Scripts\Bufff\DoubleAttack.cs" />
     <Compile Include="Assets\Scripts\UnitBrains\Player\ThirdUnitBrain.cs" />
     <Compile Include="Assets\Scripts\Controller\LevelController.cs" />
     <Compile Include="Assets\Scripts\Model\Runtime\ReadOnly\IReadOnlyProjectile.cs" />

@@ -29,13 +29,23 @@ namespace UnitBrains.Player
             // Homework 1.3 (1st block, 3rd module)
             if(GetTemperature() < overheatTemperature)
             {
-                Debug.Log(_temperature);
-
-                for (int i = 0; i < _temperature+1; i++ )
+                if (unit.sing_or_duble_bullet > 1)
                 {
-                    var projectile = CreateProjectile(forTarget);
-                    AddProjectileToList(projectile, intoList);
+                    for (int i = 0; i < unit.sing_or_duble_bullet; i++)
+                    {
+                        var projectile = CreateProjectile(forTarget);
+                        AddProjectileToList(projectile, intoList);
+                    }
                 }
+                else
+                {
+                    for (int i = 0; i < _temperature + 1; i++)
+                    {
+                        var projectile = CreateProjectile(forTarget);
+                        AddProjectileToList(projectile, intoList);
+                    }
+                }
+                
 
                 IncreaseTemperature();
             }   

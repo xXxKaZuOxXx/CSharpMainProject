@@ -1,8 +1,9 @@
+using Model.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BufSpeed : BuDebu
+public class BufSpeed<T> : BuDebu<Unit>
 {
     public float dDuration;
     public float dValue;
@@ -10,5 +11,17 @@ public class BufSpeed : BuDebu
     {
         Duration = duration;
         Value = value;
+    }
+
+    public override string NameOfBuff => "SpdBuff";
+
+    public override void AddEffect(Unit unit)
+    {
+        unit.MoveCoef += Value;
+    }
+
+    public override void RemoveEffect(Unit unit)
+    {
+        unit.MoveCoef = Value;
     }
 }

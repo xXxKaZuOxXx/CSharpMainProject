@@ -82,7 +82,7 @@ public class ThirdUnitBrain : DefaultPlayerUnitBrain
         if(statement == false)
         {
             sleep += Time.deltaTime;
-            Debug.Log(sleep);
+            
         }
       
         if(statement == true)
